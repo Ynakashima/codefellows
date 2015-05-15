@@ -1,0 +1,56 @@
+ <script>
+ var donutShop = function(l, min, max, a) {
+   this.name = l;
+   this.min = min;
+   this.max = max;
+   this.average = a;
+   this.getRandomArbitrary = function () {
+    return Math.floor(Math.random() * (this.max - this.min)) + this.min;
+   }
+   this.donutsHour = function() {
+    this.randomDonuts = this.getRandomArbitrary() * this.average;
+    return this.randomDonuts;
+   }
+
+   this.donutsDay = function() {
+    return this.randomDonuts * 10;
+   }
+  }
+
+  var downTown = new donutShop("Downtown", 8, 43, 4.5);
+  var capitalHill = new donutShop("CapitalHill", 4, 37, 2);
+  var southLakeUnion = new donutShop("SouthLakeUnion", 9, 23, 6.33);
+  var wedgewood = new donutShop("Wedgewood", 2, 28, 1.25);
+  var ballard = new donutShop("Ballard", 8, 58, 3.75);
+
+  console.log(downTown.donutsHour());
+  console.log(downTown.donutsDay());
+
+  console.log(capitalHill.donutsHour());
+  console.log(capitalHill.donutsDay());
+
+  console.log(southLakeUnion.donutsHour());
+  console.log(southLakeUnion.donutsDay());
+
+  console.log(wedgewood.donutsHour());
+  console.log(wedgewood.donutsDay());
+
+  console.log(ballard.donutsHour());
+  console.log(ballard.donutsDay());
+
+
+  var DonutMaster = function() {
+    this.shops = [downTown, capitalHill, southLakeUnion, wedgewood, ballard];
+    this.addDonuts = function(l, min, max, a) {
+      this.shops.push(new donutShop(l, min, max, a));
+    }
+
+    this.GenerateReport = function() {
+     for (i=0; i<this.shops.length; i++) {
+      console.log(this.shops[i].name + " needs to make " + " " + this.shops[i].donutsHour() + " per hour and " + this.shops[i].donutsDay() + " per day.");
+    }
+   }
+  };
+  var Tom = new DonutMaster();
+  Tom.GenerateReport();
+</script>
